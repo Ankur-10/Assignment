@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Styled Survey Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-row label {
+            width: 30%;
+            text-align: left;
+        }
+
+        .form-row input, .form-row select {
+            width: 70%;
+            padding: 10px;
+        }
+
+        .form-row-radio label {
+            text-align: left;
+            margin-right: 5px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="surveyForm">
+            <div class="form-row">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required>
+            </div>
+
+            <div class="form-row">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required>
+            </div>
+
+            <div class="form-row">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-row">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" required>
+            </div>
+
+            <div class="form-row form-row-radio">
+                <label for="gender">Gender:</label>
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+            </div>
+
+            <div class="form-row">
+                <label for="profession">Profession:</label>
+                <input type="text" id="profession" required>
+            </div>
+
+            <div class="form-row">
+                <label for="country">Country:</label>
+                <select id="country" required>
+                    <option value="">Select a country</option>
+                    <option value="usa">USA</option>
+                    <option value="canada">Canada</option>
+                    <option value="uk">UK</option>
+                    <option value="france">France</option>
+                    <option value="germany">Germany</option>
+                    <option value="india">India</option>
+                    <option value="australia">Australia</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" required>
+            </div>
+
+            <div class="button-container">
+                <input type="button" value="Submit" onclick="submitForm()">
+                <input type="button" value="Reset" onclick="resetForm()">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const email = document.getElementById("email").value;
+            const dob = document.getElementById("dob").value;
+            const gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : '';
+            const profession = document.getElementById("profession").value;
+            const country = document.getElementById("country").value;
+            const mobile = document.getElementById("mobile").value;
+
+            if (!firstName || !lastName || !email || !dob || !gender || !profession || !country || !mobile) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            const popupText = `
+                First Name: ${firstName} 
+                Last Name: ${lastName}
+                Email: ${email}
+                Date of Birth: ${dob}
+                Gender: ${gender}
+                Profession: ${profession}
+                Country: ${country}
+                Mobile Number: ${mobile}
+            `;
+
+            alert(popupText);
+            document.getElementById("surveyForm").reset();
+        }
+
+        function resetForm() {
+            document.getElementById("surveyForm").reset();
+        }
+    </script>
+</body>
+</html>

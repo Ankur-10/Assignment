@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patterned Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #calculator {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 5px;
+        }
+
+        .calculator-button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        .operators {
+            background-color: #f0ad4e; /* Orange background for operators */
+        }
+
+        .operators:hover {
+            background-color: #ec971f; /* Darker orange on hover */
+        }
+
+        .clear {
+            background-color: #d9534f; /* Red background for clear button */
+        }
+
+        .clear:hover {
+            background-color: #c9302c; /* Darker red on hover */
+        }
+
+        .equals {
+            background-color: #5bc0de; /* Blue background for equals button */
+        }
+
+        .equals:hover {
+            background-color: #31b0d5; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <input type="text" id="display" placeholder="0" readonly>
+        <div class="calculator-buttons">
+            <input type="button" class="clear" value="C" onclick="clearDisplay()">
+            <input type="button" value="9" onclick="appendToDisplay('9')">
+            <input type="button" value="8" onclick="appendToDisplay('8')">
+            <input type="button" value="7" onclick="appendToDisplay('7')">
+            <input type="button" class="operators" value="+" onclick="appendToDisplay('+')">
+            <input type="button" value="6" onclick="appendToDisplay('6')">
+            <input type="button" value="5" onclick="appendToDisplay('5')">
+            <input type="button" value="4" onclick="appendToDisplay('4')">
+            <input type="button" class="operators" value="-" onclick="appendToDisplay('-')">
+            <input type="button" value="3" onclick="appendToDisplay('3')">
+            <input type="button" value="2" onclick="appendToDisplay('2')">
+            <input type="button" value="1" onclick="appendToDisplay('1')">
+            <input type="button" class="operators" value="/" onclick="appendToDisplay('/')">
+            <input type="button" value="." onclick="appendToDisplay('.')">
+            <input type="button" value="0" onclick="appendToDisplay('0')">
+            <input type="button" class="equals" value="=" onclick="calculate()">
+            <input type="button" class="operators" value="*" onclick="appendToDisplay('*')">
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
